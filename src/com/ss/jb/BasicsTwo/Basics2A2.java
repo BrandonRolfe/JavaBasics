@@ -17,14 +17,17 @@ public class Basics2A2 {
 							  { 74, 933,   3},
 							  {249,  78, 662} };
 		
-		int largestI = 0;
-		int largestJ = 0;
+		int largestI = 0; // Holds the i index of the largest value
+		int largestJ = 0; // Holds the j index of the largest value
 		
+		// Loops through all of the i indexes
 		for(int i = 0; i < 3; i++)
 		{
+			// Loops through all of the j indexes
 			for(int j = 0; j < 3; j++)
 			{
-				if(testArray[largestI][largestJ] < testArray[i][j])
+				// Checks if the current number is larger than the previously chosen largest number
+				if(testArray[i][j] > testArray[largestI][largestJ])
 				{
 					largestI = i;
 					largestJ = j;
@@ -32,12 +35,9 @@ public class Basics2A2 {
 			}
 		}
 		
-		
+		// Prints the results
 		System.out.println("largest number: " + testArray[largestI][largestJ]);
 		System.out.println("Largest number position: [" + largestI + "] [" + largestJ + "]");
-		//System.out.println(largestI);
-		//System.out.println(largestJ);
-
 	}
 
 }

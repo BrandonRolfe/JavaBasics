@@ -1,4 +1,5 @@
 /**
+ * Holds a circle
  * 
  */
 package com.ss.jb.BasicsTwo;
@@ -9,21 +10,25 @@ package com.ss.jb.BasicsTwo;
  */
 public class Circle implements Shape
 {
-	Float radius;
+	Float radius; // Radius of a rectangle
 	
+	// Default constructor
 	public Circle() {
 		radius = 0.0f;
 	}
 
+	// Float constructor
 	public Circle(float radiusIn) {
 		radius = radiusIn;
 	}
 
+	// Calculates the area of the circle
 	@Override
 	public Float calculateArea() {
 		return (((float)Math.PI) * (radius * radius));
 	}
 	
+	// Displays the specifications of the circle
 	@Override
 	public void display()
 	{

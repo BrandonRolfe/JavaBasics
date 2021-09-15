@@ -1,4 +1,5 @@
 /**
+ * Holds a rectangle
  * 
  */
 package com.ss.jb.BasicsTwo;
@@ -9,24 +10,28 @@ package com.ss.jb.BasicsTwo;
  */
 public class Rectangle implements Shape 
 {
-	Float length;
-	Float width;
+	Float length; // Length of a rectangle
+	Float width;  // Width  of a rectangle
 	
+	// Default constructor
 	public Rectangle() {
 		length = 0.0f;
 		width  = 0.0f;
 	}
 
+	// Float constructor
 	public Rectangle(float lengthIn, float widthIn) {
 		length = lengthIn;
 		width  = widthIn;
 	}
 
+	// Calculates the area of the rectangle
 	@Override
 	public Float calculateArea() {
 		return (length * width);
 	}
 	
+	// Displays the specifications of the rectangle
 	@Override
 	public void display()
 	{
