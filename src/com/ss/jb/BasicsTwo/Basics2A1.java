@@ -14,25 +14,24 @@ public class Basics2A1 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		java.util.Scanner input = new java.util.Scanner(System.in);
 		
-		int firstNumber;  // Holds the first  entered number
-		int secondNumber; // Holds the second entered number
-		int thirdNumber;  // Holds the third  entered number
+		float total = 0;
+		int numberOfFails = 0;
 		
-		// Gets the first number
-		System.out.print("Enter the first value: ");
-		firstNumber = input.nextInt();
+		for(String i:args)
+		{
+			try
+			{
+				total += Float.parseFloat(i);
+			}
+			catch (Exception e)
+			{
+				numberOfFails++;
+			}
+		}
 		
-		// Gets the second number
-		System.out.print("Enter the second value: ");
-		secondNumber = input.nextInt();
+		System.out.println("Sum: " + total);
 		
-		// Gets the third number
-		System.out.print("Enter the third value: ");
-		thirdNumber = input.nextInt();
-
-		// Gives the sum of the three entered numbers
-		System.out.print("The sum of the three values is " + (firstNumber + secondNumber + thirdNumber));
+		System.out.println("Number of fails: " + numberOfFails);
 	}
 }
