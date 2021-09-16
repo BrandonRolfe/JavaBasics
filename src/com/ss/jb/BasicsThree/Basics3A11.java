@@ -5,6 +5,7 @@ package com.ss.jb.BasicsThree;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
@@ -14,7 +15,7 @@ import java.nio.file.Path;
  * @author brandon
  *
  */
-public class Basics3A1 {
+public class Basics3A11 {
 
 	/**
 	 * @param args
@@ -27,13 +28,17 @@ public class Basics3A1 {
 		System.out.print("Please enter a file path: ");
 		userPath = Paths.get(input.nextLine());
 		
-		try
+		try(DirectoryStream<Path> str =  Files.newDirectoryStream(userPath))
 		{
-			Stream<Path> str =  Files.list(userPath);
+			
+			for(Path entry: str)
+			{
+				System.out.println(entry.getFileName());
+			}
 			
 			//files = str.toArray();
 			//System.out.println(files[0].getClass());
-			System.out.println(str.toString());
+			//System.out.println(str.toString());
 		}
 		catch (IOException e)
 		{
