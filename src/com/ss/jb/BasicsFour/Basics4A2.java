@@ -1,4 +1,5 @@
 /**
+ * Creates a deadlock between two threads
  * 
  */
 package com.ss.jb.BasicsFour;
@@ -13,18 +14,17 @@ public class Basics4A2 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Integer firstInt = 5;
+		Integer firstInt  = 5;
 		Integer secondInt = 10;
 		
-		
-		
+		// First thread
 		Runnable thread1 = new Runnable() {
-
 			@Override
 			public void run()
 			{
 				try
 				{
+					// Locks the first object
 					synchronized(firstInt)
 					{
 						System.out.println(firstInt);
@@ -36,6 +36,7 @@ public class Basics4A2 {
 						{
 							e.printStackTrace();
 						}
+						// Tries to lock the second object
 						synchronized(secondInt)
 						{
 							
@@ -49,13 +50,14 @@ public class Basics4A2 {
 			}
 		};
 		
+		// Second thread
 		Runnable thread2 = new Runnable() {
-
 			@Override
 			public void run()
 			{
 				try
 				{
+					// Locks the second object
 					synchronized(secondInt)
 					{
 						System.out.println(secondInt);
@@ -67,6 +69,7 @@ public class Basics4A2 {
 						{
 							e.printStackTrace();
 						}
+						// Tries to lock the first object
 						synchronized(firstInt)
 						{
 							
@@ -80,6 +83,7 @@ public class Basics4A2 {
 			}
 		};
 		
+		// Starts both threads
 		new Thread(thread1).start();
 		new Thread(thread2).start();
 	}

@@ -6,4 +6,5 @@
  *
  */
 module JavaBasics {
+	requires junit;
 }
