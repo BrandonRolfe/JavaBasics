@@ -15,7 +15,7 @@ public class Basics5A2P1 {
 	 */
 	public static void main(String[] args) {
 		// Checks if an entered integer is odd 
-		IntegerEval isOdd   = (integer) -> (integer % 2 != 0);
+		IntegerEval isOdd = (integer) -> (integer % 2 != 0);
 		
 		// Checks if an entered integer is prime
 		IntegerEval isPrime = (integer) -> (Math.sqrt(integer) % 1 == 0);
