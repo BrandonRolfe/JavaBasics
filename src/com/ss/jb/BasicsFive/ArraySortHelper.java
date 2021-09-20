@@ -1,4 +1,5 @@
 /**
+ * Helper method for the ArraySort interface
  * 
  */
 package com.ss.jb.BasicsFive;
@@ -16,6 +17,7 @@ public class ArraySortHelper {
 		for(int i = 0; i<size-1; i++) {
 			for (int j = i+1; j<arr.length; j++)
 			{
+				// If the next string starts with 'e', move it up
 	            if(arr[j].charAt(0) == 'e')
 	            {
 	               String temp = arr[i];

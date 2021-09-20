@@ -1,4 +1,5 @@
 /**
+ * Functional interface for filtering lists
  * 
  */
 package com.ss.jb.BasicsFive;

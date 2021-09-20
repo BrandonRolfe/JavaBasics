@@ -1,4 +1,5 @@
 /**
+ * Functional interface for evaluating integers
  * 
  */
 package com.ss.jb.BasicsFive;

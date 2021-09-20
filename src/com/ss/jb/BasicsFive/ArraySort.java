@@ -1,4 +1,5 @@
 /**
+ * Functional interface for sorting string arrays
  * 
  */
 package com.ss.jb.BasicsFive;
@@ -10,6 +11,4 @@ package com.ss.jb.BasicsFive;
 @FunctionalInterface
 public interface ArraySort {
 	abstract String[] sort(String[] arr);
-	
-	
 }
