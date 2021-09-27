@@ -22,6 +22,7 @@ public class AdministratorMenu {
 		
 		Integer choice;
 		
+		// Loops through main menu
 		do
 		{
 			System.out.println("Administrator main menu");
@@ -58,8 +59,6 @@ public class AdministratorMenu {
 			default: System.out.println("Invalid input");
 				break;
 			}
-			
-			
 		} while(choice != 0);
 	}
 	
@@ -130,8 +129,8 @@ public class AdministratorMenu {
 		try {
 			System.out.println(adminServer.addFlight(route, flight));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Failed to add flight: SQL exception");
 		}
 	}
 	
@@ -149,10 +148,9 @@ public class AdministratorMenu {
 		try {
 			flight = adminServer.readFlight(new Flight(Integer.parseInt(input.nextLine()))).get(0);
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			//e1.printStackTrace();
+			System.out.println("Failed to check flight");
 		}
-		//route.setOrigin_id(input.nextLine());
 		
 		System.out.println("Please enter the Origin Airport code or enter N/A for no change:");
 		stringInput = input.nextLine();
@@ -205,10 +203,10 @@ public class AdministratorMenu {
 		}
 		
 		try {
-			adminServer.addFlight(route, flight);
+			adminServer.updateFlight(flight);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Failed to add flight: SQL exception");
 		}
 	}
 	
@@ -223,16 +221,16 @@ public class AdministratorMenu {
 		try {
 			flight = adminServer.readFlight(new Flight(Integer.parseInt(input.nextLine()))).get(0);
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			//e1.printStackTrace();
+			System.out.println("Failed to check flight: SQL exception");
 		}
 		
 		try {
 			adminServer.deleteFlight(flight);
 			System.out.println("Flight deleted");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Failed to delete flight: SQL exception");
 		}
 	}
 	
@@ -246,8 +244,8 @@ public class AdministratorMenu {
 				System.out.println(f.getId() + " " + f.getRoute_id() + " " + f.getDeparture_time() + " ");
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Failed to read flights");
 		}
 	}
 	/***************************************************
@@ -306,8 +304,8 @@ public class AdministratorMenu {
 		try {
 			System.out.println(adminServer.addAirport(airport));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Failed to add airport: SQL exception");
 		}
 	}
 	
@@ -400,8 +398,8 @@ public class AdministratorMenu {
 			adminServer.deleteAirport(new Airport(input.nextLine()));
 			System.out.println("Airport deleted");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Failed to delete airport: SQL exception");
 		}
 	}
 	
@@ -415,8 +413,8 @@ public class AdministratorMenu {
 				System.out.println(a.getIata_id() + " " + a.getCity());
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Failed to read airports: SQL exception");
 		}
 	}
 	
@@ -490,8 +488,8 @@ public class AdministratorMenu {
 		try {
 			System.out.println(adminServer.addTraveler(user));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Failed to add traveler: SQL exception");
 		}
 	}
 	
@@ -585,8 +583,8 @@ public class AdministratorMenu {
 			adminServer.deleteTraveler(new User(Integer.parseInt(input.nextLine())));
 			System.out.println("Flight deleted");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Failed to delete traveler: SQL exception");
 		}
 	}
 	
@@ -600,8 +598,8 @@ public class AdministratorMenu {
 				System.out.println(u.getId() + " " + u.getGiven_name() + " " + u.getFamily_name() + " " + u.getUsername() + " " + u.getEmail() + " " + u.getPhone());
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Failed to read travelers");
 		}
 	}
 	
@@ -675,8 +673,8 @@ public class AdministratorMenu {
 		try {
 			System.out.println(adminServer.addEmployee(user));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Failed to add employee: SQL exception");
 		}
 	}
 	
@@ -769,8 +767,8 @@ public class AdministratorMenu {
 			adminServer.deleteEmployee(new User(Integer.parseInt(input.nextLine())));
 			System.out.println("Employee deleted");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Failed to delete employee: SQL exception");
 		}
 	}
 	
@@ -784,8 +782,8 @@ public class AdministratorMenu {
 				System.out.println(u.getId() + " " + u.getGiven_name() + " " + u.getFamily_name() + " " + u.getUsername() + " " + u.getEmail() + " " + u.getPhone());
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Failed to read employees");
 		}
 	}
 }

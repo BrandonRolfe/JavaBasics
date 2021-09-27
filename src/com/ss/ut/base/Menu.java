@@ -44,17 +44,15 @@ public class Menu {
 			case 2: funs.administrator();
 				break;
 			case 3: funs.traveler();
-			break;
+				break;
 			case 0: System.out.println("Goodbye");
-			break;
+				break;
 			default: System.out.println("Invalid input");
-			break;
+				break;
 			}
 			
 			
 		} while(choice != 0);
-		
-		
 	}
 	
 	public void employee()
@@ -78,5 +76,4 @@ public class Menu {
 		
 		return;
 	}
-
 }

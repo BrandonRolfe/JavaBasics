@@ -23,11 +23,6 @@ import com.ss.ut.ent.User;
  *
  */
 public class Admin {
-	
-	
-	
-	
-	
 	public String addFlight(Route route, Flight flight) throws SQLException
 	{
 		Connection conn = null;
@@ -38,8 +33,6 @@ public class Admin {
 				conn = new ConnectionUtil().getConnection();
 				RouteDAO rdao = new RouteDAO(conn);
 				
-				System.out.println(route.getOrigin_id());
-				System.out.println(route.getDestination_id());
 				List <Route> routeCheck = rdao.checkRoute(route);
 				
 				if(routeCheck.isEmpty())
@@ -47,41 +40,33 @@ public class Admin {
 					try
 					{
 						flight.setRoute_id(rdao.insertRouteReturnKey(route));
-						System.out.println("new route id" + flight.getRoute_id());
 					}
 					catch (Exception e)
 					{
-						e.printStackTrace();
 						return "Route could not be added";
 					}
-					// add route
-					System.out.println("route check bad");
 				}
 				else
 				{
 					flight.setRoute_id(routeCheck.get(0).getId());
-					System.out.println("old route id" + flight.getRoute_id());
 				}
 				
 				FlightDAO fdao = new FlightDAO(conn);
 				List <Flight> flightCheck = fdao.checkFlight(flight);
 				if(!flightCheck.isEmpty())
 				{
-					//System.out.println(flightCheck.get(0).getId());
 					conn.rollback();
 					return "Flight already exists";
 				}
 				
 				flight.setAirplane_id(1);
-				System.out.println("plane set good");
 				fdao.insertFlight(flight);
-				System.out.println("insert good");
 				conn.commit();
 				
 				return "Flight addition successful";
 			} catch (Exception e) {
 				conn.rollback();
-				e.printStackTrace();
+				//e.printStackTrace();
 				return "Flight addition failure";
 			}
 			finally {
@@ -91,7 +76,6 @@ public class Admin {
 			
 				}
 			}
-
 	}
 	
 	public String updateFlight(Flight flight) throws SQLException
@@ -104,7 +88,6 @@ public class Admin {
 			List <Flight> flightCheck = fdao.checkFlight(flight);
 			if(flightCheck.isEmpty())
 			{
-				//System.out.println(flightCheck.get(0).getId());
 				return "Flight does not exist";
 			}
 			
@@ -131,7 +114,6 @@ public class Admin {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
 	}
@@ -146,7 +128,6 @@ public class Admin {
 			List <Flight> flightCheck = fdao.checkFlight(flight);
 			if(flightCheck.isEmpty())
 			{
-				//System.out.println(flightCheck.get(0).getId());
 				return "Flight does not exist";
 			}
 			Flight_BookingsDAO fbdao = new Flight_BookingsDAO(conn);
@@ -160,19 +141,15 @@ public class Admin {
 		catch(Exception e)
 		{
 			conn.rollback();
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "Flight deletion failure";
 		}
 		finally {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
-		
-		
-		
 	}
 	
 	public List <Flight> readFlights() throws Exception
@@ -194,7 +171,6 @@ public class Admin {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
 	}
@@ -218,7 +194,6 @@ public class Admin {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
 	}
@@ -227,7 +202,6 @@ public class Admin {
 	{
 		Connection conn = null;
 		
-
 		try
 		{
 			conn = new ConnectionUtil().getConnection();
@@ -239,22 +213,23 @@ public class Admin {
 				try
 				{
 					route.setId(rdao.insertRouteReturnKey(route));
+					
 				}
 				catch (Exception e)
 				{
-					//return "Route could not be added";
+					return null;
 				}
-				// add route
-				System.out.println("route check bad");
+				//System.out.println("route check bad");
 			}
 			else
 			{
 				route.setId(routeCheck.get(0).getId());
-				System.out.println("route check good");
+				//System.out.println("route check good");
 			}
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();
 			return null;
 		}
 		finally
@@ -266,7 +241,7 @@ public class Admin {
 			}
 		}
 		
-		
+		conn.commit();
 		return route;
 	}
 	
@@ -289,7 +264,7 @@ public class Admin {
 		catch(Exception e)
 		{
 			conn.rollback();
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "Airport addition failure";
 		}
 		finally
@@ -319,7 +294,7 @@ public class Admin {
 		catch(Exception e)
 		{
 			conn.rollback();
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "Airport update failure";
 		}
 		finally
@@ -327,7 +302,6 @@ public class Admin {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
 	}
@@ -351,13 +325,12 @@ public class Admin {
 			adao.deleteAirport(airport);
 			conn.commit();
 			
-			
 			return "Airport deletion successful";
 		}
 		catch(Exception e)
 		{
 			conn.rollback();
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "Airport deletion failure";
 		}
 		finally
@@ -365,7 +338,6 @@ public class Admin {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
 	}
@@ -389,7 +361,6 @@ public class Admin {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
 	}
@@ -412,7 +383,7 @@ public class Admin {
 		catch(Exception e)
 		{
 			conn.rollback();
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "User addition failure";
 		}
 		finally
@@ -420,7 +391,6 @@ public class Admin {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
 	}
@@ -441,7 +411,7 @@ public class Admin {
 		catch(Exception e)
 		{
 			conn.rollback();
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "User update failure";
 		}
 		finally
@@ -449,7 +419,6 @@ public class Admin {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
 	}
@@ -470,7 +439,7 @@ public class Admin {
 		catch(Exception e)
 		{
 			conn.rollback();
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "User update failure";
 		}
 		finally
@@ -478,7 +447,6 @@ public class Admin {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
 	}
@@ -494,7 +462,7 @@ public class Admin {
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw new Exception();
 		}
 		finally
@@ -502,7 +470,6 @@ public class Admin {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
 	}
@@ -525,7 +492,7 @@ public class Admin {
 		catch(Exception e)
 		{
 			conn.rollback();
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "User addition failure";
 		}
 		finally
@@ -533,7 +500,6 @@ public class Admin {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
 	}
@@ -554,7 +520,7 @@ public class Admin {
 		catch(Exception e)
 		{
 			conn.rollback();
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "User update failure";
 		}
 		finally
@@ -562,7 +528,6 @@ public class Admin {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
 	}
@@ -583,7 +548,7 @@ public class Admin {
 		catch(Exception e)
 		{
 			conn.rollback();
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "User update failure";
 		}
 		finally
@@ -591,7 +556,6 @@ public class Admin {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
 	}
@@ -614,7 +578,6 @@ public class Admin {
 			if(conn != null)
 			{
 				conn.close();
-		
 			}
 		}
 	}

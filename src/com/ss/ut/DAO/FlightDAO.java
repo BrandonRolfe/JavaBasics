@@ -9,10 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ss.ut.ent.Airplane;
-import com.ss.ut.ent.Airport;
 import com.ss.ut.ent.Flight;
-import com.ss.ut.ent.Route;
 
 /**
  * @author brandon
@@ -22,7 +19,6 @@ public class FlightDAO extends BaseDAO {
 
 	public FlightDAO(Connection conn) {
 		super(conn);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -37,14 +33,9 @@ public class FlightDAO extends BaseDAO {
 		return flights;
 	}
 	
-	public void insertFlight(Flight flight)// throws SQLException
+	public void insertFlight(Flight flight) throws SQLException
 	{
-		try {
-			write("INSERT INTO flight (id, route_id, airplane_id, departure_time, reserved_seats, seat_price) values (?, ?, ?, ?, ?, ?)", new Object[] {flight.getId(),flight.getRoute_id(), flight.getAirplane_id(), flight.getDeparture_time(), flight.getReserved_seats(), flight.getSeat_price()});
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		write("INSERT INTO flight (id, route_id, airplane_id, departure_time, reserved_seats, seat_price) values (?, ?, ?, ?, ?, ?)", new Object[] {flight.getId(),flight.getRoute_id(), flight.getAirplane_id(), flight.getDeparture_time(), flight.getReserved_seats(), flight.getSeat_price()});
 	}
 
 	public void updateFlight(Flight flight) throws SQLException
