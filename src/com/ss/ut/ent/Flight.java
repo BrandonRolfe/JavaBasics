@@ -26,6 +26,12 @@ public class Flight {
 		this.reserved_seats = reserved_seats;
 		this.seat_price = seat_price;
 	}
+	public Flight() {
+		// TODO Auto-generated constructor stub
+	}
+	public Flight(int id) {
+		this.id = id;
+	}
 	Integer id;
 	Integer route_id;
 	Integer airplane_id;

@@ -43,7 +43,7 @@ public class Booking_PaymentDAO extends BaseDAO {
 
 	public void updateBooking_Payment(Booking_Payment booking_payment) throws SQLException
 	{
-		write("UPDATE booking_payment SET (stripe_id = ?, refunded = ?) WHERE (booking_id = ?)", new Object[] {booking_payment.getStripe_id(), booking_payment.getRefunded(), booking_payment.getBooking_id()});
+		write("UPDATE booking_payment SET stripe_id = ?, refunded = ? WHERE (booking_id = ?)", new Object[] {booking_payment.getStripe_id(), booking_payment.getRefunded(), booking_payment.getBooking_id()});
 	}
 	
 	public void deleteBooking_Payment(Booking_Payment booking_payment) throws SQLException

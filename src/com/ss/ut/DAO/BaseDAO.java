@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -34,6 +35,30 @@ public abstract class BaseDAO <T> {
 		}
 		
 		preparedWrite.execute();
+	}
+	
+	protected Integer writeReturnKey(String statement, Object[] data) throws SQLException
+	{
+		PreparedStatement preparedWrite = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
+		
+		if(data != null)
+		{
+			for(Integer i = 0; i < data.length; i++)
+			{
+				preparedWrite.setObject((i + 1), data[i]);
+			}
+		}
+		preparedWrite.execute();
+		
+		ResultSet rs = preparedWrite.getGeneratedKeys();
+		while(rs.next()) {
+			return rs.getInt(1); //check if this is 0 or 1;
+		}
+		
+		return null;
+		//preparedWrite.execute();
+		//preparedWrite.getGeneratedKeys().next();
+		//return preparedWrite.getGeneratedKeys().getInt(1);
 	}
 	
 	protected List <T> read(String statement, Object[] data) throws SQLException, ClassNotFoundException

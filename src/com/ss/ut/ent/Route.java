@@ -20,6 +20,9 @@ public class Route {
 		this.origin_id = origin_id;
 		this.destination_id = destination_id;
 	}
+	public Route() {
+		// TODO Auto-generated constructor stub
+	}
 	Integer id;
 	String origin_id;
 	String destination_id;

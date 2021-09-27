@@ -12,6 +12,7 @@ import java.util.List;
 import com.ss.ut.ent.Airplane;
 import com.ss.ut.ent.Airport;
 import com.ss.ut.ent.Flight;
+import com.ss.ut.ent.Route;
 
 /**
  * @author brandon
@@ -36,14 +37,19 @@ public class FlightDAO extends BaseDAO {
 		return flights;
 	}
 	
-	public void insertFlight(Flight flight) throws SQLException
+	public void insertFlight(Flight flight)// throws SQLException
 	{
-		write("INSERT INTO flight (route_id, airplane_id, departure_time, reserved_seats, seat_price) values (?, ?, ?, ?, ?)", new Object[] {flight.getRoute_id(), flight.getAirplane_id(), flight.getDeparture_time(), flight.getReserved_seats(), flight.getSeat_price()});
+		try {
+			write("INSERT INTO flight (id, route_id, airplane_id, departure_time, reserved_seats, seat_price) values (?, ?, ?, ?, ?, ?)", new Object[] {flight.getId(),flight.getRoute_id(), flight.getAirplane_id(), flight.getDeparture_time(), flight.getReserved_seats(), flight.getSeat_price()});
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void updateFlight(Flight flight) throws SQLException
 	{
-		write("UPDATE flight SET (route_id = ?, airplane_id = ?, departure_time = ?, reserved_seats = ?, seat_price = ?) WHERE (id = ?)", new Object[] {flight.getRoute_id(), flight.getAirplane_id(), flight.getDeparture_time(), flight.getReserved_seats(), flight.getSeat_price(), flight.getId()});
+		write("UPDATE flight SET route_id = ?, airplane_id = ?, departure_time = ?, reserved_seats = ?, seat_price = ? WHERE (id = ?)", new Object[] {flight.getRoute_id(), flight.getAirplane_id(), flight.getDeparture_time(), flight.getReserved_seats(), flight.getSeat_price(), flight.getId()});
 	}
 	
 	public void deleteFlight(Flight flight) throws SQLException
@@ -54,5 +60,10 @@ public class FlightDAO extends BaseDAO {
 	public List <Flight> readFlights() throws SQLException, ClassNotFoundException
 	{
 		return read("SELECT * FROM flight", null);
+	}
+	
+	public List <Flight> checkFlight(Flight flight) throws ClassNotFoundException, SQLException
+	{
+		return (read("SELECT * FROM flight WHERE id = ?", new Object[] {flight.getId()}));
 	}
 }

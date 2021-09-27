@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.ss.ut.ent.Airplane;
 import com.ss.ut.ent.Airport;
+import com.ss.ut.ent.Flight;
 import com.ss.ut.ent.Flight_Bookings;
 
 /**
@@ -49,6 +50,11 @@ public class Flight_BookingsDAO extends BaseDAO {
 	public void deleteFlight_Bookings(Flight_Bookings flight_bookings) throws SQLException
 	{
 		write("DELETE FROM flight_bookings WHERE (flight_id = ? AND booking_id = ?)", new Object[] {flight_bookings.getFlight_id(), flight_bookings.getBooking_id()});
+	}
+	
+	public void deleteFlight_BookingsByFlight(Flight flight) throws SQLException
+	{
+		write("DELETE FROM flight_bookings WHERE (flight_id = ? )", new Object[] {flight.getId()});
 	}
 	
 	public List <Flight_Bookings> readFlight_Bookings() throws SQLException, ClassNotFoundException

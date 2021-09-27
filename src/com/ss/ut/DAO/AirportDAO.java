@@ -41,16 +41,21 @@ public class AirportDAO extends BaseDAO {
 
 	public void updateAirport(Airport airport) throws SQLException
 	{
-		write("UPDATE airport SET (city = ?) WHERE (iata_id = ?)", new Object[] {airport.getCity(), airport.getIata_id()});
+		write("UPDATE airport SET city = ? WHERE (iata_id = ?)", new Object[] {airport.getCity(), airport.getIata_id()});
 	}
 	
 	public void deleteAirport(Airport airport) throws SQLException
 	{
-		write("DELETE FROM airport WHERE (iata_id = ?)", new Object[] {airport.getIata_id()});
+		write("DELETE FROM airport WHERE iata_id = ?", new Object[] {airport.getIata_id()});
 	}
 	
 	public List <Airport> readAirports() throws SQLException, ClassNotFoundException
 	{
 		return read("SELECT * FROM airport", null);
+	}
+	
+	public List <Airport> readAirportUsage(Airport airport) throws SQLException, ClassNotFoundException
+	{
+		return read("SELECT * FROM airport WHERE iata_id = ? AND (? IN (SELECT destination_id FROM route JOIN flight WHERE route.id = flight.route_id) OR ? IN (SELECT origin_id FROM route JOIN flight WHERE route.id = flight.route_id))", null);
 	}
 }

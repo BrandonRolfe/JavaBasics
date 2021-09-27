@@ -42,7 +42,7 @@ public class AirplaneDAO extends BaseDAO {
 
 	public void updateAirplane(Airplane airplane) throws SQLException
 	{
-		write("UPDATE airplane SET (type_id = ?) WHERE (id = ?)", new Object[] {airplane.getType_id(), airplane.getId()});
+		write("UPDATE airplane SET type_id = ? WHERE (id = ?)", new Object[] {airplane.getType_id(), airplane.getId()});
 	}
 	
 	public void deleteAirplane(Airplane airplane) throws SQLException

@@ -43,7 +43,7 @@ public class User_RoleDAO extends BaseDAO {
 
 	public void updateUser_Role(User_Role user_role) throws SQLException
 	{
-		write("UPDATE user_role SET (name = ?) WHERE (id = ?)", new Object[] {user_role.getId(), user_role.getName()});
+		write("UPDATE user_role SET name = ? WHERE (id = ?)", new Object[] {user_role.getId(), user_role.getName()});
 	}
 	
 	public void deleteUser_Role(User_Role user_role) throws SQLException

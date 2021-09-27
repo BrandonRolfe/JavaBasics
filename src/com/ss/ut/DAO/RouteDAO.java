@@ -40,10 +40,15 @@ public class RouteDAO extends BaseDAO {
 	{
 		write("INSERT INTO Route (origin_id, destination_id) values (?, ?)", new Object[] {route.getOrigin_id(), route.getDestination_id()});
 	}
+	
+	public Integer insertRouteReturnKey(Route route) throws SQLException
+	{
+		return writeReturnKey("INSERT INTO Route (origin_id, destination_id) values (?, ?)", new Object[] {route.getOrigin_id(), route.getDestination_id()});
+	}
 
 	public void updateRoute(Route route) throws SQLException
 	{
-		write("UPDATE route SET (origin_id = ?, destination_id = ?) WHERE (id = ?)", new Object[] {route.getOrigin_id(), route.getDestination_id(), route.getId()});
+		write("UPDATE route SET origin_id = ?, destination_id = ? WHERE (id = ?)", new Object[] {route.getOrigin_id(), route.getDestination_id(), route.getId()});
 	}
 	
 	public void deleteRoute(Route route) throws SQLException
@@ -54,5 +59,15 @@ public class RouteDAO extends BaseDAO {
 	public List <Route> readRoutes() throws SQLException, ClassNotFoundException
 	{
 		return read("SELECT * FROM route", null);
+	}
+	
+	public List <Route> checkRoute(Route route) throws ClassNotFoundException, SQLException
+	{
+		return (read("SELECT * FROM route WHERE origin_id = ? AND destination_id = ?", new Object[] {route.getOrigin_id(), route.getDestination_id()}));
+	}
+	
+	public List <Route> checkRouteById(Integer route) throws ClassNotFoundException, SQLException
+	{
+		return (read("SELECT * FROM route WHERE id = ? ", new Object[] {route}));
 	}
 }

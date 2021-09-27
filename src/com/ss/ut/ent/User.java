@@ -30,6 +30,23 @@ public class User {
 		this.password = password;
 		this.phone = phone;
 	}
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+	public User(int id) {
+		this.id = id;
+	}
+	public User(Integer id, Integer role_id, String given_name, String family_name, String username, String email,
+			String phone) {
+		super();
+		this.id = id;
+		this.role_id = role_id;
+		this.given_name = given_name;
+		this.family_name = family_name;
+		this.username = username;
+		this.email = email;
+		this.phone = phone;
+	}
 	Integer id;
 	Integer role_id;
 	String given_name;

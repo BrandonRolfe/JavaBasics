@@ -43,7 +43,7 @@ public class BookingDAO extends BaseDAO {
 
 	public void updateBooking(Booking booking) throws SQLException
 	{
-		write("UPDATE booking SET (is_active = ?, confirmation_code = ?) WHERE (id = ?)", new Object[] {booking.getIs_active(), booking.getConfirmation_code(), booking.getId()});
+		write("UPDATE booking SET is_active = ?, confirmation_code = ? WHERE (id = ?)", new Object[] {booking.getIs_active(), booking.getConfirmation_code(), booking.getId()});
 	}
 	
 	public void deleteBooking(Booking booking) throws SQLException

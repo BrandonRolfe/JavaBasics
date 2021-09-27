@@ -17,6 +17,12 @@ public class Airport {
 		this.iata_id = iata_id;
 		this.city = city;
 	}
+	public Airport(String iata_id) {
+		this.iata_id = iata_id;
+	}
+	public Airport() {
+		// TODO Auto-generated constructor stub
+	}
 	String iata_id;
 	String city;
 

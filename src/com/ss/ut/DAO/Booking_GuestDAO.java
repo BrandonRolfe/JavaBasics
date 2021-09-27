@@ -45,7 +45,7 @@ public class Booking_GuestDAO extends BaseDAO {
 
 	public void updateBooking_Guest(Booking_Guest booking_guest) throws SQLException
 	{
-		write("UPDATE booking_guest SET (contact_email = ?, contact_phone = ?) WHERE (id = ?)", new Object[] {booking_guest.getContact_email(), booking_guest.getContact_phone(), booking_guest.getBooking_id()});
+		write("UPDATE booking_guest SET contact_email = ?, contact_phone = ? WHERE (id = ?)", new Object[] {booking_guest.getContact_email(), booking_guest.getContact_phone(), booking_guest.getBooking_id()});
 	}
 	
 	public void deleteBooking_Guest(Booking_Guest booking_guest) throws SQLException

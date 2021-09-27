@@ -43,7 +43,7 @@ public class PassengerDAO extends BaseDAO {
 
 	public void updatePassenger(Passenger passenger) throws SQLException
 	{
-		write("UPDATE passenger SET (booking_id = ?, given_name = ?, family_name = ?, dob = ?, gender = ?, address = ?) WHERE (id = ?)", new Object[] {passenger.getBooking_id(), passenger.getGiven_name(), passenger.getFamily_name(), passenger.getDob(), passenger.getGender(), passenger.getAddress(), passenger.getId()});
+		write("UPDATE passenger SET booking_id = ?, given_name = ?, family_name = ?, dob = ?, gender = ?, address = ? WHERE (id = ?)", new Object[] {passenger.getBooking_id(), passenger.getGiven_name(), passenger.getFamily_name(), passenger.getDob(), passenger.getGender(), passenger.getAddress(), passenger.getId()});
 	}
 	
 	public void deletePassenger(Passenger passenger) throws SQLException
